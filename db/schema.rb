@@ -10,7 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_10_191911) do
+ActiveRecord::Schema.define(version: 2020_05_12_155914) do
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.string "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "festivals", force: :cascade do |t|
+    t.string "name"
+    t.string "theme"
+    t.string "description"
+    t.integer "user_id"
+    t.integer "city_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_festivals_on_city_id"
+    t.index ["user_id"], name: "index_festivals_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.string "content"
+    t.integer "user_id"
+    t.integer "festival_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["festival_id"], name: "index_reviews_on_festival_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
