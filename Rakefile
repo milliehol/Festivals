@@ -1,2 +1,3 @@
-require "bundler/gem_tasks"
-task :default => :spec
+require_relative 'config/application'
+
+Rails.application.load_tasks
